@@ -1,0 +1,114 @@
+/*
+Assignment #5 
+Database Design and Web Implementation 
+Nicholas White 
+*/ 
+
+
+
+
+
+1. Find artists in the artists table who have a song in the songs table
+
+
+
+mysql> SELECT a.artist
+    -> FROM user_songs s, user_artists a, user_albums b
+    -> WHERE s.album_id = b.album_id AND (b.artist_id=a.artist_id)
+    -> GROUP BY a.artist
+    -> ORDER BY a.artist;
++-----------------------+
+| artist                |
++-----------------------+
+| Cage the Elephant     |
+| Drake                 |
+| Lee Brice             |
+| Mumford and Sons      |
+| Red Hot Chili Peppers |
+| The Killers           |
+| The Weeknd            |
++-----------------------+
+7 rows in set (0.00 sec)
+
+
+2. Show all Songs and their respective Genres
+
+mysql> SELECT s.track_name, g.genre
+    -> FROM user_songs s, user_genres g, user_albums a
+    -> WHERE s.album_id=a.album_id AND (a.genre_id=g.genre_id)
+    -> GROUP BY s.track_name
+    -> ORDER BY s.track_name;
++---------------------------+-------------+
+| track_name                | genre       |
++---------------------------+-------------+
+| Californication           | Rock        |
+| Come a Little Closer      | Alternative |
+| Fake Love                 | Hip Hop/Rap |
+| I Don't Dance             | Country     |
+| Little Lion Man           | Folk        |
+| Mr. Brightside            | Alternative |
+| Reminder                  | Hip Hop/Rap |
+| Scar Tissue               | Rock        |
+| Starboy                   | Hip Hop/Rap |
+| That Don't Sound Like You | Country     |
+| Trouble                   | Alternative |
+| White Blank Page          | Folk        |
++---------------------------+-------------+
+12 rows in set (0.00 sec)
+
+
+
+3. Select All Songs and Artists played this year
+
+mysql> SELECT s.track_name, a.artist
+    -> FROM user_songs s,user_artists a, user_albums b
+    -> WHERE s.album_id=b.album_id AND (b.artist_id=a.artist_id) AND (s.last_time_played > "2016-01-01 00:00")
+    -> GROUP BY s.track_name
+    -> ORDER BY s.track_name;
+
++---------------------------+-------------------+
+| track_name                | artist            |
++---------------------------+-------------------+
+| Come a Little Closer      | Cage the Elephant |
+| Fake Love                 | Drake             |
+| I Don't Dance             | Lee Brice         |
+| Mr. Brightside            | The Killers       |
+| Reminder                  | The Weeknd        |
+| Starboy                   | The Weeknd        |
+| That Don't Sound Like You | Lee Brice         |
+| Trouble                   | Cage the Elephant |
++---------------------------+-------------------+
+8 rows in set (0.00 sec)
+
+
+4. Select the Song, Album, Play Count, and the Last time it was played of the song with the most plays
+
+mysql> SELECT s.track_name, b.album, s.play_count, s.last_time_played
+    -> FROM user_songs s, user_artists a, user_albums b
+    -> WHERE s.album_id=b.album_id AND b.artist_id = a.artist_id
+    -> GROUP BY s.track_name
+    -> HAVING MAX(s.play_count)
+    -> ORDER BY s.track_name DESC
+    -> LIMIT 1;
++------------------+--------------+------------+---------------------+
+| track_name       | album        | play_count | last_time_played    |
++------------------+--------------+------------+---------------------+
+| White Blank Page | Sign No More |         13 | 2015-08-12 19:45:00 |
++------------------+--------------+------------+---------------------+
+1 row in set (0.01 sec)
+
+
+5. Select the Artists who do not have an album in the albums table
+
+mysql> SELECT a.artist
+    -> FROM user_artists a
+    -> LEFT JOIN user_albums b ON a.artist_id=b.artist_id
+    -> WHERE b.album IS NULL
+    -> ORDER BY a.artist;
++-------------+
+| artist      |
++-------------+
+| The Beatles |
++-------------+
+1 row in set (0.00 sec)
+

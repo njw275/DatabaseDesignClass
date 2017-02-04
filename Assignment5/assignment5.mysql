@@ -1,0 +1,88 @@
+DROP TABLE IF EXISTS user_songs;
+
+CREATE TABLE user_songs (
+  track_name VARCHAR(40) NOT NULL,
+  album_id INT(6),
+  last_time_played DATETIME,
+  track_id INT(6) AUTO_INCREMENT,
+  play_count INT(6) NOT NULL,
+  PRIMARY KEY(track_id)
+  );
+
+INSERT INTO user_songs VALUES("Fake Love",1,"2016-11-29 13:00",NULL,1);
+INSERT INTO user_songs VALUES("That Don't Sound Like You",2,"2016-10-31 12:32",NULL,1);
+INSERT INTO user_songs VALUES("I Don't Dance",2,"2016-10-31 18:15",NULL,1);
+INSERT INTO user_songs VALUES("Reminder",3,"2016-11-28 10:50",NULL,3);
+INSERT INTO user_songs VALUES("Starboy",3,"2016-11-15 15:00",NULL,5);
+INSERT INTO user_songs VALUES("Scar Tissue",4,"2014-2-5 8:00",NULL,2);
+INSERT INTO user_songs VALUES("Californication",4,"2014-2-6 8:00",NULL,1);
+INSERT INTO user_songs VALUES("Little Lion Man",5,"2015-7-15 16:40",NULL,1);
+INSERT INTO user_songs VALUES("Mr. Brightside",6,"2016-11-20 21:37",NULL,2);
+INSERT INTO user_songs VALUES("Trouble",7,"2016-3-15 22:00",NULL,3);
+INSERT INTO user_songs VALUES("Come a Little Closer",8,"2016-6-11 23:59",NULL,8);
+INSERT INTO user_songs VALUES("White Blank Page",5,"2015-8-12 19:45",NULL,13);
+
+
+DROP TABLE IF EXISTS user_albums;
+
+CREATE TABLE user_albums (
+  album VARCHAR(40) NOT NULL,
+  artist_id INT(6) NOT NULL,
+  genre_id INT(6),
+  album_id INT(6) AUTO_INCREMENT,
+  cover_art VARCHAR(40),
+  PRIMARY KEY(album_id)
+  );
+
+INSERT INTO user_albums VALUES("I Don't Dance",2,2,2,"IDontDance.jpg");
+
+INSERT INTO user_albums VALUES("Fake Love",1,1,NULL,NULL);
+INSERT INTO user_albums VALUES("I Don't Dance",2,2,NULL,NULL);
+INSERT INTO user_albums VALUES("Starboy",3,1,NULL,NULL);
+INSERT INTO user_albums VALUES("Californication",4,3,NULL,NULL);
+INSERT INTO user_albums VALUES("Sign No More",7,5,NULL,NULL);
+INSERT INTO user_albums VALUES("Hot Fuss",5,4,NULL,NULL);
+INSERT INTO user_albums VALUES("Tell Me I'm Pretty",6,4,NULL,NULL);
+INSERT INTO user_albums VALUES("Melophobia",6,4,NULL,NULL);
+INSERT INTO user_albums VALUES("Blurryface",10,4,NULL,NULL);
+INSERT INTO user_albums VALUES("Cleopatra",9,5,NULL,NULL);
+
+
+DROP TABLE IF EXISTS user_artists;
+
+CREATE TABLE user_artists (
+  artist VARCHAR(40),
+  artist_id INT(6) AUTO_INCREMENT,
+  PRIMARY KEY(artist_id)
+  );
+
+INSERT INTO user_artists VALUES("Drake",NULL);
+INSERT INTO user_artists VALUES("Lee Brice",NULL);
+INSERT INTO user_artists VALUES("The Weeknd",NULL);
+INSERT INTO user_artists VALUES("Red Hot Chili Peppers",NULL);
+INSERT INTO user_artists VALUES("The Killers",NULL);
+INSERT INTO user_artists VALUES("Cage the Elephant",NULL);
+INSERT INTO user_artists VALUES("Mumford and Sons",NULL);
+INSERT INTO user_artists VALUES("The Beatles",NULL);
+INSERT INTO user_artists VALUES("The Lumineers",NULL);
+INSERT INTO user_artists VALUES("Twenty One Pilots",NULL);
+
+DROP TABLE IF EXISTS user_genres;
+
+CREATE TABLE user_genres (
+  genre_id INT(6) AUTO_INCREMENT,
+  genre VARCHAR(40),
+  PRIMARY KEY(GENRE_ID)
+  );
+
+
+INSERT INTO user_genres VALUES(NULL,"Hip Hop/Rap");
+INSERT INTO user_genres VALUES(NULL,"Country");
+INSERT INTO user_genres VALUES(NULL,"Rock");
+INSERT INTO user_genres VALUES(NULL,"Alternative");
+INSERT INTO user_genres VALUES(NULL,"Folk");
+INSERT INTO user_genres VALUES(NULL,"Classical");
+INSERT INTO user_genres VALUES(NULL,"Christmas");
+INSERT INTO user_genres VALUES(NULL,"Blues");
+INSERT INTO user_genres VALUES(NULL,"Jazz");
+INSERT INTO user_genres VALUES(NULL,"Foreign");
