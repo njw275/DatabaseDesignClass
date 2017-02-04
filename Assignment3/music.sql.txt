@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS music;
+
+CREATE TABLE music (
+  year_written int(4) default 0,
+  track_id varchar(40) NOT NULL,
+  artist varchar(40) NOT NULL,
+  song varchar(40) NOT NULL,
+  PRIMARY KEY(track_id)
+  );
+
+LOAD DATA LOCAL INFILE “tracks_clean.txt” INTO TABLE music;

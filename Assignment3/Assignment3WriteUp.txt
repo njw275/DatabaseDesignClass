@@ -1,0 +1,14 @@
+Nicholas White Assignment 3
+http://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset#subset
+
+————————
+These are records from a dataset called The Million Song Dataset. It contains song titles along with the artist, a track_id, and the year the song came out. The dataset contains one million entries, but the dataset I worked with was a random subset downloaded from the same site. 
+————————
+
+The Million Song Dataset was created at Columbia University in the City of New York. According to their website the original data was from The Echo Nest, and they also had a grant from the Nation Science Foundation. (http://labrosa.ee.columbia.edu/millionsong/) After reading this information, I found the dataset to be reliable. The Echo Nest is a leading company in music intelligence, and I also believe Columbia University is a reliable source.
+
+Since I used a subset, it was more difficult for me to come to strong conclusions about the songs. After the queries I did run though, I noticed some information about the subset. First, I was interested in looking to see the percent of artists/bands starting with the word “The”, as this as always been a popular decision from groups. Out of the 4680 entries, 311 artists started with “The”, or in other terms, roughly 6.6% of the entries included “The” at the beginning of the artist/band title. More importantly, I found only six artists had 10 or more songs in the subset. Those artists being Aerosmith, Michael Jackson, Phil Collins, Radiohead, RUN-DMC, and Snow Patrol. The median year of the songs in the subset is 1968, as the music is dated anywhere from 1926-2010. The average year in the dataset though was 1997, which means my particular dataset was of a more modern genre.
+
+After seeing the list of the 6 artists with more than 10 songs in the dataset (Aerosmith, Michael Jackson, Phil Collins, Radiohead, RUN-DMC, and Snow Patrol), I was surprised to see I recognized all of the artists. The dataset contained music from 1926 (the earliest year in the dataset) to 2010. I figured there would be artists that I did not know with many songs in the dataset. As I stated earlier though, since the average is closer to present day, and it is in my lifetime, I understand why I recognize the leaders of songs in the dataset.
+
+If I was to continue researching with this type of data, I would start off by using a larger portion of the dataset. Also, I would like to dive deeper into The Echo Nest’s research and see if I can also find a dataset with information about albums/singles sold. My biggest interest with this data though, would be to find information about streaming music, for example on Spotify, Amazon, Google Play, and Apple Music, and compare the different streaming site’s song selections and streams to each other. 
