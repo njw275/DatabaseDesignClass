@@ -1,0 +1,21 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+Nick White\
+Assignment #2\
+Databases Class\
+\
+I chose this particular dataset because I was interested to see the information of the passengers on Titanic. Also, I thought that the data could be used for analysis such as percentage of women survivors, men survivors, different age groups percentage of survival, etc. I found this dataset on the Department of Biostatistics from Vanderbilt University\'92s website. I believe since it came from a university\'92s edu webpage, it is pretty credible. \
+I first had issues with separating by comma because there were comma\'92s in the names column. The first and last names were separated by the comma, leading to an extra column in each row other than the header. For this reason, I used the import csv lib and used csv.reader. This reader separated by commas but skips the one inside the values[i] that holds the name. I also took away the row.names column; this column was just a numbering system for each passenger. As this was unnecessary, I took the column away. I put the column name in a list that way it can be added back in or other unwanted columns could be added easily. The next problem was since the first person was numbered 1 and also survived the crash (listed as survived: 1), the 1 in column of survival for this passenger was also being scrubbed away. To counter act this extra scrubbing, I added the loop counter. If the loop counter was above 0, then it was not the first column; therefore, it should be placed in the clean file. If there was any white-space or blanks, I made them NA as the file already contained some fields with \'91NA\'92.\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \outl0\strokewidth0 \strokec2 {{\NeXTGraphic unknown.png \width12000 \height7420
+}¬}\
+This is a quick chart I made on Google Sheets. It actually helped me find two errors on parsing as there was a \'93101 sex\'94 and an \'93NA sex\'94. After I fixed the parsing, I saw only female or male. The chart shows the total number of survivors for both genders. \cf0 \outl0\strokewidth0 \
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf0 \
+{\field{\*\fldinst{HYPERLINK "http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic.txt"}}{\fldrslt http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic.txt}}}
