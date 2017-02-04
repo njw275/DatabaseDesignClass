@@ -1,0 +1,180 @@
+/*
+ *	Shehroze U. Khan - suk222
+ *      Nicholas J. White - njw275
+ *	Database Design & Web Implementation
+ * 	Assignment 4
+ *
+ *	MYSQL QUERIES
+ */
+
+
+1.
+SELECT net_id, first_name, last_name, major, mobile_number
+FROM students
+ORDER BY last_name;
+
+mysql> SELECT net_id, first_name, last_name, major, mobile_number
+    -> FROM students
+    -> ORDER BY last_name;
++--------+------------+-----------+-------------------+---------------+
+| net_id | first_name | last_name | major             | mobile_number |
++--------+------------+-----------+-------------------+---------------+
+| mj2323 | Michael    | Jordan    | Sports Management | (212)232-3232 |
+| aj5233 | Alens      | Juns      | Economics         | (212)777-8688 |
+| suk222 | Shehroze   | Khan      | Computer Science  | (212)555-5555 |
+| fk2277 | Farzan     | Khan      | History           | (212)222-5478 |
+| lr5709 | Lauren     | Robertson | Engineering       | (504)324-7790 |
+| bar31  | Barney     | Stinson   | Theater           | (555)732-1590 |
+| tw1101 | Thomas     | Wells     | Fine Arts         | (504)222-7304 |
+| njw275 | Nicholas   | White     | Computer Science  | (502)123-4567 |
++--------+------------+-----------+-------------------+---------------+
+8 rows in set (0.00 sec)
+
+2.
+SELECT club_name, URL, meeting_space
+FROM clubs
+WHERE department="Computer Science";
+
+mysql> SELECT club_name, URL, meeting_space
+    -> FROM clubs
+    -> WHERE department="Computer Science";
++----------------------+-------------------------+---------------+
+| club_name            | URL                     | meeting_space |
++----------------------+-------------------------+---------------+
+| ACM                  | cs.nyu.edu/acm/site/    | Courant 311   |
+| WinC                 | nyuwinc.org/about       | Courant 109   |
+| NYU Programming Team | cs.nyu.edu/acm/progteam | Courant 314   |
++----------------------+-------------------------+---------------+
+3 rows in set (0.00 sec)
+
+3.
+SELECT c.club_name, COUNT(m.net_id) AS total_members
+FROM clubs c,membership m
+WHERE c.club_name = m.club_name
+GROUP BY club_name
+ORDER BY total_members DESC;
+
+mysql> SELECT c.club_name, COUNT(m.net_id) AS total_members
+    -> FROM clubs c,membership m
+    -> WHERE c.club_name = m.club_name
+    -> GROUP BY club_name
+    -> ORDER BY total_members DESC;
++----------------------+---------------+
+| club_name            | total_members |
++----------------------+---------------+
+| Model United Nations |             2 |
+| Debate Society       |             2 |
+| Break Dance Club     |             2 |
+| NYU Programming Team |             1 |
+| ACM                  |             1 |
+| WinC                 |             1 |
++----------------------+---------------+
+6 rows in set (0.00 sec)
+
+4.
+ SELECT c.club_name, SUM(c.fee) AS earnings
+ FROM clubs c,membership m
+ WHERE c.club_name = m.club_name
+ GROUP BY c.club_name DESC
+ LIMIT 1;
+
+mysql>  SELECT c.club_name, SUM(c.fee) AS earnings
+    ->  FROM clubs c,membership m
+    ->  WHERE c.club_name = m.club_name
+    ->  GROUP BY c.club_name DESC
+    ->  LIMIT 1;
++-----------+----------+
+| club_name | earnings |
++-----------+----------+
+| WinC      |    25.00 |
++-----------+----------+
+1 row in set (0.00 sec)
+
+5.
+SELECT c.department, AVG(c.fee)
+FROM clubs c,membership m
+WHERE c.club_name = m.club_name
+GROUP BY c.department
+ORDER BY c.department;
+
+mysql> SELECT c.department, AVG(c.fee)
+    -> FROM clubs c,membership m
+    -> WHERE c.club_name = m.club_name
+    -> GROUP BY c.department
+    -> ORDER BY c.department;
++-------------------+------------+
+| department        | AVG(c.fee) |
++-------------------+------------+
+| Computer Science  |  14.000000 |
+| History           |   6.000000 |
+| Performance Art   |   2.000000 |
+| Political Science |   5.000000 |
++-------------------+------------+
+4 rows in set (0.01 sec)
+
+6.
+SELECT CONCAT(s.last_name,', ', s.first_name,' - ', COUNT(m.net_id), ' clubs')
+FROM students s,membership m
+WHERE s.net_id = m.net_id
+  AND m.club_name IS NOT NULL
+GROUP BY m.net_id;
+
+mysql> SELECT CONCAT(s.last_name,', ', s.first_name,' - ', COUNT(m.net_id), ' clubs')
+    -> FROM students s,membership m
+    -> WHERE s.net_id = m.net_id
+    ->   AND m.club_name IS NOT NULL
+    -> GROUP BY m.net_id;
++-------------------------------------------------------------------------+
+| CONCAT(s.last_name,', ', s.first_name,' - ', COUNT(m.net_id), ' clubs') |
++-------------------------------------------------------------------------+
+| Juns, Alens - 1 clubs                                                   |
+| Stinson, Barney - 1 clubs                                               |
+| Khan, Farzan - 1 clubs                                                  |
+| Robertson, Lauren - 1 clubs                                             |
+| Jordan, Michael - 1 clubs                                               |
+| White, Nicholas - 1 clubs                                               |
+| Khan, Shehroze - 3 clubs                                                |
++-------------------------------------------------------------------------+
+7 rows in set (0.01 sec)
+
+7.
+SELECT s.first_name, s.last_name
+FROM students s,membership m
+WHERE (s.net_id = m.net_id)
+ AND m.club_name IS NULL
+ORDER BY s.last_name,s.first_name;
+
+mysql> SELECT s.first_name, s.last_name
+    -> FROM students s,membership m
+    -> WHERE (s.net_id = m.net_id)
+    ->  AND m.club_name IS NULL
+    -> ORDER BY s.last_name,s.first_name;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Thomas     | Wells     |
++------------+-----------+
+1 row in set (0.01 sec)
+
+8.
+SELECT s.first_name, s.last_name, s.net_id, s.major, COUNT(m.net_id) AS numOfMemberships
+FROM students s,membership m
+WHERE (s.net_id = m.net_id)
+GROUP BY m.net_id
+ORDER BY numOfMemberships DESC 
+LIMIT 1;
+
+mysql> SELECT s.first_name, s.last_name, s.net_id, s.major, COUNT(m.net_id) AS numOfMemberships
+    -> FROM students s,membership m
+    -> WHERE (s.net_id = m.net_id)
+    -> GROUP BY m.net_id
+    -> ORDER BY numOfMemberships DESC 
+    -> LIMIT 1;
++------------+-----------+--------+------------------+------------------+
+| first_name | last_name | net_id | major            | numOfMemberships |
++------------+-----------+--------+------------------+------------------+
+| Shehroze   | Khan      | suk222 | Computer Science |                3 |
++------------+-----------+--------+------------------+------------------+
+1 row in set (0.00 sec)
+
+This query shows the student who is a member in the most clubs.

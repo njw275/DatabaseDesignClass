@@ -1,0 +1,70 @@
+DROP TABLE IF EXISTS students;
+
+CREATE TABLE students (
+  first_name VARCHAR(40) NOT NULL,
+  last_name VARCHAR(40) NOT NULL,
+  net_id VARCHAR(6) NOT NULL,
+  graduation_date DATE,
+  date_started VARCHAR(20) NOT NULL,
+  major VARCHAR(40) NOT NULL,
+  mobile_number VARCHAR(13),
+  second_email VARCHAR(40) NOT NULL,
+  PRIMARY KEY(net_id)
+  );
+
+INSERT INTO students VALUES("Shehroze","Khan","suk222",NULL,"2014-08-25","Computer Science","(212)555-5555","shehroze@gmail.com");
+INSERT INTO students VALUES("Nicholas","White","njw275",NULL,"2014-08-25","Computer Science","(502)123-4567","nick_white@gmail.com");
+INSERT INTO students VALUES("Alens","Juns","aj5233",NULL,"2014-08-25","Economics","(212)777-8688","alens@yahoo.com");
+INSERT INTO students VALUES("Farzan","Khan","fk2277",NULL,"2016-08-25","History","(212)222-5478","farzantheman@aol.com");
+INSERT INTO students VALUES("Michael","Jordan","mj2323","2016-05-31","2012-08-25","Sports Management","(212)232-3232","mjordan@jordan.com");
+INSERT INTO students VALUES("Barney","Stinson","bar31",NULL,"2015-08-25","Theater","(555)732-1590","barney@himym.com");
+INSERT INTO students VALUES("Lauren","Robertson","lr5709","2015-05-31","2011-08-25","Engineering","(504)324-7790","laurenriscool@cia.gov");
+INSERT INTO students VALUES("Thomas","Wells","tw1101","1990-05-31","1986-08-25","Fine Arts","(504)222-7304","tisdoingwells@gmail.gov");
+
+DROP TABLE IF EXISTS clubs;
+
+CREATE TABLE clubs (
+  club_name VARCHAR(40) NOT NULL,
+  description VARCHAR(40) NOT NULL,
+  department VARCHAR(40) NOT NULL,
+  club_president VARCHAR(40) NOT NULL,
+  club_treasurer VARCHAR(40) NOT NULL,
+  club_secretary VARCHAR(40) NOT NULL,
+  fee decimal(4,2) NOT NULL,
+  url VARCHAR(40) NOT NULL,
+  email VARCHAR(40) NOT NULL,
+  meeting_space VARCHAR(50) NOT NULL,
+  PRIMARY KEY(club_name)
+  );
+
+INSERT INTO clubs VALUES("ACM","ACM at NYU is the local chapter of the Association for Computing Machinery. Our mission is to build and promote a computer science community through technical and social events.", "Computer Science","Shehroze Khan","Carlos McGee", "Robert Stevens", 7.00,"cs.nyu.edu/acm/site/","acm@nyu.edu","Courant 311");
+
+INSERT INTO clubs VALUES("WinC","WinC's main mission is to support women interested in computers and technology by providing an environment to encourage them and activities to inspire them.","Computer Science","Lauren Robertson","Cindy Michelson", "Toni Rivers", 25.00,"nyuwinc.org/about","winc@nyu.edu","Courant 109");
+
+INSERT INTO clubs VALUES("NYU Programming Team","If you are passionate about solving algorithmic problems, learning advanced algorithms, or eventually becoming an experienced competitive programmer,  join the NYU Programming Team!","Computer Science","Nicholas White","Shehroze Khan", "Lauren Robertson", 10.00,"cs.nyu.edu/acm/progteam","nyuprogteam@nyu.edu","Courant 314");
+
+INSERT INTO clubs VALUES("Model United Nations","We strive to provide a platform for debate, communication, and cooperation on real international issues and to inspire the next generation of leaders to seek new solutions. In our commitment to empowering delegates, we pride ourself on our four points of distinction, namely: D.A.I.S.","Political Science","Alens Juns","Michael Jordan", "Barney Stinson", 5.00,"www.nyumunc.org","nyumunc@nyu.edu","Stern 111");
+
+INSERT INTO clubs VALUES("Debate Society","The NYU Parliamentary Debate Union is the official parliamentary debate team of New York University. We actively compete on the American Parliamentary Debate Association and USUDA BP circuit, sending debaters to various tournaments across the country on a weekly basis. In addition, we traditionally host a large APDA tournament in the spring semester. In 2016, we hosted the APDA National Championship, after successfully hosting the North American Debating Championship in early 2015. In 2017 we are hosting NYU's first ProAm tournament, which will help train novices by mandating that all varsities must debate with a novice partner.","History","Barney Stinson","Farzan Khan", "Nicholas White", 6.00,"www.nyudebate.org","nyudebate@nyu.edu","Stern 003");
+
+INSERT INTO clubs VALUES("Break Dance Club","We're a organization in NYU that teaches students the art of breakdancing. There is no experience necessary and we give students FREE lessons by our EXPERIENCED members from the GINYU Crew of NYU. Come visit us!","Performance Art","Michael Jordan","Lauren Robertson", "Alens Juns", 2.00,"www.nyudance.org","nyubreakdance@nyu.edu","Tisch Hall 01");
+
+DROP TABLE IF EXISTS membership;
+
+CREATE TABLE membership (
+  club_name VARCHAR(40),
+  net_id VARCHAR(6) NOT NULL,
+  date_joined DATE NOT NULL,
+  date_left DATE
+  );
+
+INSERT INTO membership VALUES("ACM","suk222","2014-09-01",NULL);
+INSERT INTO membership VALUES(NULL,"tw1101","1986-09-01","1990-05-31");
+INSERT INTO membership VALUES("WinC","lr5709","2012-09-05","2015-05-31");
+INSERT INTO membership VALUES("NYU Programming Team","suk222","2015-09-01",NULL);
+INSERT INTO membership VALUES("Model United Nations","njw275","2014-09-01","2015-09-01");
+INSERT INTO membership VALUES("Model United Nations","mj2323","2012-09-01","2016-05-31");
+INSERT INTO membership VALUES("Debate Society","aj5233","2014-09-01",NULL);
+INSERT INTO membership VALUES("Debate Society","bar31","2015-09-01",NULL);
+INSERT INTO membership VALUES("Break Dance Club","suk222","2014-09-01",NULL);
+INSERT INTO membership VALUES("Break Dance Club","fk2277","2014-09-01","2015-01-25");
